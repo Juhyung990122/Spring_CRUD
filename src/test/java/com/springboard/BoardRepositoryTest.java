@@ -1,6 +1,8 @@
 package com.springboard;
 
 
+import java.util.Collection;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,14 @@ public class BoardRepositoryTest {
 	public void TestByTitle() {
 		BoardRepository.findBoardByTitle("177title")
 		.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void TestBywriter() {
+		Collection<Board> result = BoardRepository.findByWriter("guinness");
+		
+		result.forEach(board->System.out.println(result));
+		
 	}
 }
 	
