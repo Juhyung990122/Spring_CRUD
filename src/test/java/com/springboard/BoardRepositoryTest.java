@@ -1,8 +1,6 @@
 package com.springboard;
 
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,33 +17,26 @@ public class BoardRepositoryTest {
 	@Autowired
 	BoardRepository BoardRepository;
 	
+	// 쿼리 연습 테스트데이터 200개 생성
+	/*
 	@Test
-	public void InsertTest() {
+	public void Insert200() {
+		int i;
+		for(i=1; i<=200; i++) {
 		Board board = new Board();
-		board.setTitle("test title");
-		board.setContent("test content");
+		board.setTitle(i+"title");
+		board.setContent(i+"content");
 		board.setWriter("guinness");
 		
 		BoardRepository.save(board);
-	}
-	
-	@Test
-	public void testRead() {
-		BoardRepository.findById(1L).ifPresent((board)->{System.out.println(board);});
-	}
-	
-	@Test
-	public void testUpdate() {
-		Board board = BoardRepository.findById(1L).orElse(null);
-		board.setTitle("new title");
-		System.out.println("update");
-		BoardRepository.save(board);
+		}
+	*/
 		
-	}
-	
 	@Test
-	public void testDelete() {
-		System.out.println("delete");
-		BoardRepository.deleteById(1L);
+	public void TestByTitle() {
+		BoardRepository.findBoardByTitle("177title")
+		.forEach(board -> System.out.println(board));
 	}
 }
+	
+	
