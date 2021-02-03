@@ -11,4 +11,5 @@ import com.springboard.domain.*;
 public interface BoardRepository extends CrudRepository<Board, Long> {
 	public List<Board> findBoardByTitle(String title);
 	public Collection<Board> findByWriter(String writer);
+	public Collection<Board> findByTitleContaining(String title);
 }

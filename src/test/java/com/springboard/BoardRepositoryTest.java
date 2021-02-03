@@ -27,13 +27,13 @@ public class BoardRepositoryTest {
 		for(i=1; i<=200; i++) {
 		Board board = new Board();
 		board.setTitle(i+"title");
-		board.setContent(i+"content");
+		board.setContent(i+"content="); 
 		board.setWriter("guinness");
 		
 		BoardRepository.save(board);
 		}
-	*/
-		
+	
+	*/	
 	@Test
 	public void TestByTitle() {
 		BoardRepository.findBoardByTitle("177title")
@@ -42,10 +42,17 @@ public class BoardRepositoryTest {
 	
 	@Test
 	public void TestBywriter() {
-		Collection<Board> result = BoardRepository.findByWriter("guinness");
+		Collection<Board> result = BoardRepository.findByWriter("");
 		
 		result.forEach(board->System.out.println(result));
 		
+	}
+
+	
+	@Test
+	public void TestByTitleContaining() {
+		Collection<Board> result = BoardRepository.findByTitleContaining("7");
+		result.forEach(board->System.out.println(result));
 	}
 }
 	
