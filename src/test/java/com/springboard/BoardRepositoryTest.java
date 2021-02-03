@@ -33,7 +33,6 @@ public class BoardRepositoryTest {
 		BoardRepository.save(board);
 		}
 	
-	*/	
 	@Test
 	public void TestByTitle() {
 		BoardRepository.findBoardByTitle("177title")
@@ -54,6 +53,7 @@ public class BoardRepositoryTest {
 		Collection<Board> result = BoardRepository.findByTitleContaining("7");
 		result.forEach(board->System.out.println(result));
 	}
+	*/	
 }
 	
 	
