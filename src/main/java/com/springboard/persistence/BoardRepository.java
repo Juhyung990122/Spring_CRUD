@@ -8,3 +8,4 @@ import com.springboard.domain.*;
 @Repository
 public interface BoardRepository extends CrudRepository<Board, Long> {
 }
+

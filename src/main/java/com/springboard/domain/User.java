@@ -16,7 +16,7 @@ import lombok.*;
 @EqualsAndHashCode(of="uid")
 public class User {
 	@Id
-	private String uid;
+	private Integer uid;
 	private String email;
 	private String password;
 	private String user_name;

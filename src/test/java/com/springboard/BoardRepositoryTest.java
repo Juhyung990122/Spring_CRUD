@@ -15,12 +15,11 @@ import com.springboard.persistence.BoardRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BoardRepositoryTest {
-	
+/*	
 	@Autowired
 	BoardRepository BoardRepository;
 	
 	// 쿼리 연습 테스트데이터 200개 생성
-	/*
 	@Test
 	public void Insert200() {
 		int i;
@@ -53,7 +52,7 @@ public class BoardRepositoryTest {
 		Collection<Board> result = BoardRepository.findByTitleContaining("7");
 		result.forEach(board->System.out.println(result));
 	}
-	*/	
+	*/
 }
 	
 	
