@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import lombok.extern.java.Log;
 
 import com.springboard.domain.Board;
@@ -56,9 +58,12 @@ public class WritePostTest {
 			}
 			
 		}*/
+		
 		@Test
 		public void FetchjoinTest() {
 			List<Object[]> result = userRepository.getUserWithBoardTitle("user1");
 			result.forEach(arr->System.out.println(Arrays.toString(arr)));
 		}
+		
+		
 }
