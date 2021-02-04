@@ -7,7 +7,7 @@ import com.springboard.domain.Board;
 import com.springboard.persistence.BoardRepository;
 
 @Service("BoardService")
-public class BoardServiceimpl {
+public class BoardServiceimpl implements BoardService {
 	
 	@Autowired
 	private BoardRepository BoardRepository;
