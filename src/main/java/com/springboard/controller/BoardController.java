@@ -28,4 +28,10 @@ public class BoardController {
 	public Optional<Board> Detail(@PathVariable(value = "id")Long id){
 		return BoardService.GetPostDetail(id);
 	}
+	
+	@PutMapping("/post")
+	public Board Create(@RequestBody Board newpost) {
+		return BoardService.CreatePost(newpost);
+	}
+	
 }

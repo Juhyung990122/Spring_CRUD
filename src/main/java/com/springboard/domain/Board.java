@@ -1,10 +1,12 @@
 package com.springboard.domain;
 
 import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,7 +20,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="board")
-@ToString(exclude="user")
+@ToString
 @Getter
 @Setter
 @EqualsAndHashCode(of="id")
@@ -28,8 +30,9 @@ public class Board {
 	private Long id;
 	private String title;
 	private String content;
-	
+
 	@ManyToOne
+	@JoinColumn(name="user_uid")
 	private User user;
 	
 	@CreationTimestamp
