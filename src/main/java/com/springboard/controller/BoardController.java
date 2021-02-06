@@ -1,15 +1,16 @@
 package com.springboard.controller;
-import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.Id;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.springboard.domain.Board;
-import com.springboard.persistence.BoardRepository;
+
 import com.springboard.service.BoardServiceimpl;
+
+import net.minidev.json.JSONObject;
 
 
 @RestController
@@ -29,9 +30,14 @@ public class BoardController {
 		return BoardService.GetPostDetail(id);
 	}
 	
-	@PutMapping("/post")
+	@PostMapping("/post")
 	public Board Create(@RequestBody Board newpost) {
 		return BoardService.CreatePost(newpost);
+	}
+	
+	@PutMapping("/post/{id}")
+	public Board Edit(@RequestBody JSONObject editpost, @PathVariable("id")Long id){
+		return BoardService.EditPost(editpost,id);
 	}
 	
 }
