@@ -56,4 +56,9 @@ public class BoardServiceimpl implements BoardService {
 		return post;
 	}
 	
+	public String DeletePost(@PathVariable("id")Long id) {
+		BoardRepository.deleteById(id);
+		return "Post delete";
+	}
+	
 }

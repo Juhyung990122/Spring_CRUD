@@ -15,4 +15,5 @@ public interface BoardService {
 	public Optional<Board> GetPostDetail(@PathVariable("id")Long id);
 	public Board CreatePost(@RequestBody Board newpost);
 	public Board EditPost(@RequestBody JSONObject editpost, @PathVariable("id")Long id);
+	public String DeletePost(@PathVariable("id")Long id);
 }

@@ -40,4 +40,9 @@ public class BoardController {
 		return BoardService.EditPost(editpost,id);
 	}
 	
+	@DeleteMapping("/post/{id}")
+	public String Delete(@PathVariable("id")Long id) {
+		return BoardService.DeletePost(id);
+	}
+	
 }
