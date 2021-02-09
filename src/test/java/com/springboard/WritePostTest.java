@@ -59,11 +59,4 @@ public class WritePostTest {
 			
 		}*/
 		
-		@Test
-		public void FetchjoinTest() {
-			List<Object[]> result = userRepository.getUserWithBoardTitle("user1");
-			result.forEach(arr->System.out.println(Arrays.toString(arr)));
-		}
-		
-		
 }
