@@ -31,9 +31,10 @@ import lombok.*;
 @Table(name= "user")
 @EqualsAndHashCode(of="uid")
 public class User implements UserDetails{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String uid;
+	private Long uid;
 	@Column(unique = true)
 	private String email;
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -53,7 +54,7 @@ public class User implements UserDetails{
 	
 	@Override
     public String getUsername() {
-        return email;
+        return this.email;
     }
 	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

@@ -31,12 +31,12 @@ public class JwtTokenProvider {
 	
 	@PostConstruct
 	protected void init() {
-		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());	
+		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 	
-	public String createToken(String uid,List<String> roles) {
+	public String createToken(String email,List<String> roles) {
 		// claim == 사용자 정보
-		Claims claims = Jwts.claims().setSubject(uid);
+		Claims claims = Jwts.claims().setSubject(email);
 		claims.put("roles",roles);
 		Date now = new Date();
 		return Jwts.builder()
