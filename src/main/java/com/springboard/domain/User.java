@@ -39,7 +39,7 @@ public class User implements UserDetails{
 	private String email;
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
-	private String username;
+	private String nickname;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Builder.Default

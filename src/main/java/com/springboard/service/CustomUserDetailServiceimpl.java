@@ -1,6 +1,7 @@
 package com.springboard.service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.springboard.config.security.JwtTokenProvider;
 import com.springboard.domain.User;
+import com.springboard.domain.User.UserBuilder;
 import com.springboard.persistence.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -50,4 +52,11 @@ public class CustomUserDetailServiceimpl implements UserDetailsService {
 		return "Leaved";
 	}
 	
+	public User setNickname(Long uid, String nickname) {
+		User user = UserRepository.findById(uid).get();
+		user.setNickname(nickname);
+		UserRepository.save(user);
+		System.out.println(user.getNickname());
+		return user;
+	}
 }

@@ -6,11 +6,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboard.config.security.JwtTokenProvider;
-
+import com.springboard.domain.User;
 import com.springboard.service.CustomUserDetailServiceimpl;
 import lombok.RequiredArgsConstructor;
 import net.minidev.json.JSONObject;
@@ -31,6 +32,11 @@ public class UserController {
 	@PostMapping(value="/login")
 	public String login(@RequestBody JSONObject user) {
 		return userService.login(user, jwtTokenProvider);
+	}
+	
+	@PutMapping(value="/set/{uid}")
+	public User setNickname(@PathVariable("uid") Long uid, @RequestBody String nickname) {
+		return userService.setNickname(uid, nickname);
 	}
 	
 	@DeleteMapping(value="/leave/{uid}")
