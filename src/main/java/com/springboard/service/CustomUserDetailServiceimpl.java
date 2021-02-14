@@ -1,7 +1,6 @@
 package com.springboard.service;
 
 import java.util.Collections;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.springboard.config.security.JwtTokenProvider;
 import com.springboard.domain.User;
-import com.springboard.domain.User.UserBuilder;
 import com.springboard.persistence.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -32,13 +30,12 @@ public class CustomUserDetailServiceimpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
 	}
 	
-	
 	public String signup(JSONObject user, PasswordEncoder passwordEncoder) {
 		UserRepository.save(User.builder()
                 .email(user.get("email").toString())
                 .password(passwordEncoder.encode((CharSequence)user.get("password")))
                 .roles(Collections.singletonList("USER")) // 최초 가입시 USER 로 설정
-                .build()).getUid();
+                .build());
 		return "Created";
 	}
 	

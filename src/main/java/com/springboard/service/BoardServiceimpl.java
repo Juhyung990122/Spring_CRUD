@@ -18,6 +18,8 @@ import com.springboard.response.CommonResult;
 import com.springboard.response.ListResult;
 import com.springboard.response.SingleResult;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import net.minidev.json.JSONObject;
 
 @Service("BoardService")
@@ -30,11 +32,17 @@ public class BoardServiceimpl<T> implements BoardService {
 	@Autowired
 	private ResponseService responseService;
 
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "X-AUTH-TOKEN", required = true, dataType = "String", paramType="header")
+		})
 	public ListResult<Iterable<Board>> GetPost() {
 		Iterable<Board> result =BoardRepository.findAll();
 		return (ListResult<Iterable<Board>>)responseService.getListResult((List<T>)result);
 	}
 	
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "X-AUTH-TOKEN", required = true, dataType = "String", paramType="header")
+		})
 	public CommonResult GetPostDetail(@PathVariable("id")Long id){
 		Optional<Board> post = BoardRepository.findById(id);
 		if (post.isPresent()) {
@@ -43,7 +51,9 @@ public class BoardServiceimpl<T> implements BoardService {
 		return responseService.getFailResult();
 		
 	}
-	
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "X-AUTH-TOKEN", required = true, dataType = "String", paramType="header")
+		})
 	public SingleResult<Board> CreatePost(@RequestBody Board newpost) {
 		Board post = new Board();
 		Optional<User> user = UserRepository.findById(newpost.getUser().getUid());
@@ -54,6 +64,9 @@ public class BoardServiceimpl<T> implements BoardService {
 		return responseService.getSingleResult(post);
 	}
 	
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "X-AUTH-TOKEN", required = true, dataType = "String", paramType="header")
+		})
 	public SingleResult<Board> EditPost(@RequestBody JSONObject editpost, @PathVariable("id")Long id) {
 		Board post = BoardRepository.findById(id).get();
 		String title = editpost.getOrDefault("title","").toString();
@@ -69,6 +82,9 @@ public class BoardServiceimpl<T> implements BoardService {
 		return responseService.getSingleResult(post);
 	}
 	
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "X-AUTH-TOKEN", required = true, dataType = "String", paramType="header")
+		})
 	public CommonResult DeletePost(@PathVariable("id")Long id) {
 		if(BoardRepository.findById(id).isEmpty()) {
 			return responseService.getFailResult();

@@ -18,6 +18,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import lombok.*;
@@ -41,11 +42,15 @@ public class User implements UserDetails{
 	private String password;
 	private String nickname;
 	
+	@JsonIgnore
+	public String username;
+	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@Builder.Default
 	private List<String> roles = new ArrayList<>();
 	
 	@Override
+	@JsonIgnore // 리턴시 이 필드는 표시안함 (정확히는 JSON으로 변환 안하는것)
 	public Collection<? extends GrantedAuthority> getAuthorities(){
 		return this.roles.stream()
 				.map(SimpleGrantedAuthority::new)
