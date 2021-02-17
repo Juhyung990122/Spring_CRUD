@@ -1,8 +1,10 @@
 package com.springboard.controller;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.springboard.domain.Board;
@@ -36,19 +38,19 @@ public class BoardController {
 	
 	@ApiOperation(value = "포스트 생성 ",notes = "새로운 포스트를 생성한다.")
 	@PostMapping("/post")
-	public SingleResult Create(@RequestBody Board newpost) {
-		return BoardService.CreatePost(newpost);
+	public SingleResult Create(@RequestBody Board newpost,Authentication authentication) {
+		return BoardService.CreatePost(newpost, authentication);
 	}
 	
 	@ApiOperation(value = "포스트 수정 ",notes = "포스트를 수정한다.")
 	@PutMapping("/post/{id}")
-	public SingleResult Edit(@RequestBody JSONObject editpost, @PathVariable("id")Long id){
-		return BoardService.EditPost(editpost,id);
+	public CommonResult Edit(@RequestBody JSONObject editpost, @PathVariable("id")Long id,Authentication authentication){
+		return BoardService.EditPost(editpost,id,authentication);
 	}
 	@ApiOperation(value="포스트 삭제", notes = "포스트를 삭제한다.")
 	@DeleteMapping("/post/{id}")
-	public CommonResult Delete(@PathVariable("id")Long id) {
-		return BoardService.DeletePost(id);
+	public CommonResult Delete(@PathVariable("id")Long id,Authentication authentication) {
+		return BoardService.DeletePost(id, authentication);
 	}
 	
 }

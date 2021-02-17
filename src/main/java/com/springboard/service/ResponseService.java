@@ -62,6 +62,7 @@ public class ResponseService {
 		setSuccessResult(result);
 		return result;
 	}
+
 	
 	//다중 결과 리턴 
 	public <T> ListResult<T> getListResult(List<T> list){
@@ -71,7 +72,5 @@ public class ResponseService {
 		return result;
 	}
 
-	
-	
  	
 }

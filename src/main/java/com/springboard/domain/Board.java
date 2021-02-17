@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +35,7 @@ public class Board {
 
 	@ManyToOne
 	@JoinColumn(name="user_uid")
+	@JsonView(com.springboard.response.BoardJsonView.class)
 	private User user;
 	
 	@CreationTimestamp
