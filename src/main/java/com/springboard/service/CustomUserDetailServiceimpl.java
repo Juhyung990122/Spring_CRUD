@@ -1,6 +1,7 @@
 package com.springboard.service;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,7 +35,7 @@ public class CustomUserDetailServiceimpl implements UserDetailsService {
 		UserRepository.save(User.builder()
                 .email(user.get("email").toString())
                 .password(passwordEncoder.encode((CharSequence)user.get("password")))
-                .roles(Collections.singletonList("USER")) // 최초 가입시 USER 로 설정
+                .roles(Collections.singletonList(user.get("roles").toString())) // 최초 가입시 USER 로 설정
                 .build());
 		return "Created";
 	}

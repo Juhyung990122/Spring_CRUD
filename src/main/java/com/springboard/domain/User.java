@@ -49,7 +49,6 @@ public class User implements UserDetails{
 	public String username;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
-	@Builder.Default
 	private List<String> roles = new ArrayList<>();
 	
 	@Override
@@ -91,5 +90,8 @@ public class User implements UserDetails{
 		return true;
 	}
 	
-	
+	public String isAdmin() {
+		System.out.println(this.roles.get(0));
+		return this.roles.get(0);
+	}
 }
