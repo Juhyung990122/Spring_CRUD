@@ -49,10 +49,10 @@ public class User implements UserDetails{
 	public String username;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
+	@Builder.Default
 	private List<String> roles = new ArrayList<>();
 	
 	@Override
-	@JsonIgnore // 리턴시 이 필드는 표시안함 (정확히는 JSON으로 변환 안하는것)
 	public Collection<? extends GrantedAuthority> getAuthorities(){
 		return this.roles.stream()
 				.map(SimpleGrantedAuthority::new)
@@ -90,8 +90,4 @@ public class User implements UserDetails{
 		return true;
 	}
 	
-	public String isAdmin() {
-		System.out.println(this.roles.get(0));
-		return this.roles.get(0);
-	}
 }
